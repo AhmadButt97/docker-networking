@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mywordpress:
+    image: wordpress
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db-mysql
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: mypassword
+      WORDPRESS_DB_NAME: mydb
+    networks:
+      - mynetwork
+
+  db-mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: mydb
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
